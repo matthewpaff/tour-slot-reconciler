@@ -1,0 +1,1 @@
+{"description": "retain a nonexpired supplied slot snapshot", "expected": {"slots": [{"end": 300, "expires_at": 180, "id": "s0", "start": 200, "version": 1}]}, "id": "slots-0000", "input": {"now": 150, "slots": [{"end": 300, "expires_at": 180, "id": "s0", "start": 200, "version": 1}]}}

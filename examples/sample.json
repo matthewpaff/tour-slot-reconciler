@@ -1,0 +1,12 @@
+{
+  "now": 150,
+  "slots": [
+    {
+      "id": "s0",
+      "start": 200,
+      "end": 300,
+      "expires_at": 180,
+      "version": 1
+    }
+  ]
+}

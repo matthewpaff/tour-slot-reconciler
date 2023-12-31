@@ -4,6 +4,7 @@ import json
 import sys
 
 from .core import evaluate
+from .conflicts import detect
 from .fixture_check import check
 
 
@@ -11,6 +12,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description='Normalize supplied tour slots and retain the newest nonexpired version.')
     parser.add_argument("path", nargs="?", default="-", help="UTF-8 JSON file or - for stdin")
     parser.add_argument("--check-fixtures", metavar="JSONL")
+    parser.add_argument("--conflicts", action="store_true", help="report overlaps among current slots")
     args = parser.parse_args(argv)
     for stream in (sys.stdin, sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
@@ -26,7 +28,7 @@ def main(argv=None):
             else:
                 with open(args.path, encoding="utf-8-sig") as handle:
                     data = json.load(handle)
-            print(json.dumps(evaluate(data), ensure_ascii=True, indent=2))
+            print(json.dumps(detect(data) if args.conflicts else evaluate(data), ensure_ascii=True, indent=2))
         return 0
     except (ValueError, RecursionError) as error:
         print("error: " + str(error), file=sys.stderr)

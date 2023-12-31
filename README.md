@@ -10,6 +10,7 @@ environment, external service, or network access is required.
 ```console
 python -m slots_tool --help
 python -m slots_tool examples/sample.json
+python -m slots_tool --conflicts examples/sample.json
 python -m slots_tool --check-fixtures fixtures/cases.jsonl
 python generate_fixtures.py --count 20
 python -m unittest discover -s tests -v
@@ -18,6 +19,8 @@ python -m unittest discover -s tests -v
 Run from this directory. The optional path defaults to `-`, which reads JSON from
 stdin. Output is JSON or a fixture-check summary. Exit codes are 0 success,
 1 file failure, and 2 invalid input. Examples and fixtures contain generated data.
+
+`--conflicts` compares the latest nonexpired version of each slot and reports overlapping intervals. It keeps at most 100 overlap details in the output while returning the exact total and a truncation flag.
 
 Requires supplied now seconds and slots [{id,start,end,expires_at,version}] (up to 1000). Times are integer seconds and intervals positive. The highest version per ID wins; equal-version conflicts fail. Expired latest records hide earlier versions rather than resurrecting stale availability. Results sort by start/ID. No provider API, time-zone conversion, hold, or booking occurs.
 

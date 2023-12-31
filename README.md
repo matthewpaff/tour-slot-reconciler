@@ -1,5 +1,7 @@
 # Tour Slot Reconciler
 
+**Provenance:** Created in November 2026. The 2023 fixture commit dates are a disclosed simulation, not actual 2023 work. See [HISTORY.md](HISTORY.md).
+
 Normalize supplied tour slots and retain the newest nonexpired version.
 
 Uses Python 3.10+ and its standard library only. No package installation, virtual
